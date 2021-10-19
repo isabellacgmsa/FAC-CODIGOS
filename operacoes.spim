@@ -1,0 +1,122 @@
+.data
+linha: .asciiz "\n"
+ADD: .asciiz "ADD: "
+SUB: .asciiz "\nSUB: "
+AND: .asciiz "\nAND: "
+OR: .asciiz "\nOR: "
+XOR: .asciiz "\nXOR: "
+MASk: .asciiz "\nMASK: "
+SLL: .asciiz "\nSLL("
+p: .asciiz "): "
+SRL: .asciiz "\nSRL("
+
+    .text
+main:
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+    
+    li $v0, 5
+    syscall
+    move $t1, $v0
+
+    li $v0, 5
+    syscall
+    move $t2, $v0
+
+    add $s0, $t0, $t1
+    sub $s1, $t0, $t1
+
+    and $s2, $t0, $t1
+    or $s3, $t0, $t1
+    xor $s4, $t0, $t1
+
+    andi $s5, $t2, 31
+
+    sll $s6, $t0, $s5
+    srl $s7, $t1, $s5 
+
+    li $v0, 4
+    la $a0, ADD 
+    syscall
+
+    li $v0, 1
+    la $a0, ($s0)
+    syscall
+
+    li $v0, 4
+    la $a0, SUB
+    syscall
+
+        li $v0, 1
+    la $a0, ($s1)
+    syscall
+
+    li $v0, 4
+    la $a0, AND
+    syscall
+
+        li $v0, 1
+    la $a0, ($s2)
+    syscall
+
+    li $v0, 4
+    la $a0, OR
+    syscall
+
+        li $v0, 1
+    la $a0, ($s3)
+    syscall
+
+    li $v0, 4
+    la $a0, XOR
+    syscall
+
+    li $v0, 1
+    la $a0, ($s4)
+    syscall
+
+    li $v0, 4
+    la $a0, MASk 
+    syscall
+
+    li $v0, 1
+    la $a0, ($s5)
+    syscall
+
+    li $v0, 4
+    la $a0, SLL
+    syscall
+
+    li $v0, 1
+    la $a0, ($s5)
+    syscall
+
+    li $v0, 4
+    la $a0, p
+    syscall
+
+    li $v0, 1
+    la $a0, ($s6)
+    syscall
+
+    li $v0, 4
+    la $a0, SRL
+    syscall
+
+    li $v0, 1
+    la $a0, ($s5)
+    syscall
+
+    li $v0, 4
+    la $a0, p
+    syscall
+
+    li $v0, 1
+    la $a0, ($s7)
+    syscall
+
+    li $v0, 4
+    la $a0, linha
+    syscall
